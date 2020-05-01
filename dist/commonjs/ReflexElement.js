@@ -21,13 +21,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -43,16 +43,20 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _react = _interopRequireDefault(require("react"));
 
-///////////////////////////////////////////////////////////
-// ReflexElement
-// By Philippe Leefsma
-// December 2016
-//
-///////////////////////////////////////////////////////////
-var SizeAwareReflexElement =
-/*#__PURE__*/
-function (_React$Component) {
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var SizeAwareReflexElement = /*#__PURE__*/function (_React$Component) {
   (0, _inherits2.default)(SizeAwareReflexElement, _React$Component);
+
+  var _super = _createSuper(SizeAwareReflexElement);
 
   /////////////////////////////////////////////////////////
   //
@@ -62,8 +66,8 @@ function (_React$Component) {
     var _this;
 
     (0, _classCallCheck2.default)(this, SizeAwareReflexElement);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(SizeAwareReflexElement).call(this, props));
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onResize", function (rect) {
+    _this = _super.call(this, props);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onResize", function (rect) {
       var _this$props = _this.props,
           resizeHeight = _this$props.resizeHeight,
           resizeWidth = _this$props.resizeWidth;
@@ -128,15 +132,15 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      return _react.default.createElement(_reactMeasure.default, {
+      return /*#__PURE__*/_react.default.createElement(_reactMeasure.default, {
         bounds: true,
         onResize: this.onResize
       }, function (_ref) {
         var measureRef = _ref.measureRef;
-        return _react.default.createElement("div", {
+        return /*#__PURE__*/_react.default.createElement("div", {
           ref: measureRef,
           className: "reflex-size-aware"
-        }, _react.default.createElement("div", {
+        }, /*#__PURE__*/_react.default.createElement("div", {
           style: _this3.state
         }, _this3.renderChildren()));
       });
@@ -145,11 +149,19 @@ function (_React$Component) {
   return SizeAwareReflexElement;
 }(_react.default.Component);
 
-var ReflexElement =
-/*#__PURE__*/
-function (_React$Component2) {
+var ReflexElement = /*#__PURE__*/function (_React$Component2) {
   (0, _inherits2.default)(ReflexElement, _React$Component2);
 
+  var _super2 = _createSuper(ReflexElement);
+
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////
   //
   //
@@ -158,7 +170,7 @@ function (_React$Component2) {
     var _this4;
 
     (0, _classCallCheck2.default)(this, ReflexElement);
-    _this4 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ReflexElement).call(this, props));
+    _this4 = _super2.call(this, props);
     _this4.state = {
       size: props.size
     };
@@ -176,91 +188,72 @@ function (_React$Component2) {
     //
     /////////////////////////////////////////////////////////
     value: function () {
-      var _componentDidUpdate = (0, _asyncToGenerator2.default)(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee(prevProps, prevState, snapshot) {
-        var directions, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, direction;
+      var _componentDidUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(prevProps, prevState, snapshot) {
+        var directions, _iterator, _step, direction;
 
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(prevState.size !== this.state.size)) {
-                  _context.next = 28;
+                  _context.next = 19;
                   break;
                 }
 
                 directions = this.toArray(this.props.direction);
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context.prev = 5;
-                _iterator = directions[Symbol.iterator]();
+                _iterator = _createForOfIteratorHelper(directions);
+                _context.prev = 3;
 
-              case 7:
-                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context.next = 14;
+                _iterator.s();
+
+              case 5:
+                if ((_step = _iterator.n()).done) {
+                  _context.next = 11;
                   break;
                 }
 
                 direction = _step.value;
-                _context.next = 11;
+                _context.next = 9;
                 return this.props.events.emit('element.size', {
                   index: this.props.index,
                   size: this.props.size,
                   direction: direction
                 });
 
-              case 11:
-                _iteratorNormalCompletion = true;
-                _context.next = 7;
+              case 9:
+                _context.next = 5;
                 break;
 
-              case 14:
-                _context.next = 20;
+              case 11:
+                _context.next = 16;
                 break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](3);
+
+                _iterator.e(_context.t0);
 
               case 16:
                 _context.prev = 16;
-                _context.t0 = _context["catch"](5);
-                _didIteratorError = true;
-                _iteratorError = _context.t0;
 
-              case 20:
-                _context.prev = 20;
-                _context.prev = 21;
+                _iterator.f();
 
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
+                return _context.finish(16);
 
-              case 23:
-                _context.prev = 23;
-
-                if (!_didIteratorError) {
-                  _context.next = 26;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 26:
-                return _context.finish(23);
-
-              case 27:
-                return _context.finish(20);
-
-              case 28:
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[5, 16, 20, 28], [21,, 23, 27]]);
+        }, _callee, this, [[3, 13, 16, 19]]);
       }));
 
-      return function componentDidUpdate(_x, _x2, _x3) {
+      function componentDidUpdate(_x, _x2, _x3) {
         return _componentDidUpdate.apply(this, arguments);
-      };
+      }
+
+      return componentDidUpdate;
     }() /////////////////////////////////////////////////////////
     //
     //
@@ -298,14 +291,14 @@ function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var className = (0, _toConsumableArray2.default)(this.props.className.split(' ')).concat([this.props.orientation, 'reflex-element']).join(' ').trim();
+      var className = [].concat((0, _toConsumableArray2.default)(this.props.className.split(' ')), [this.props.orientation, 'reflex-element']).join(' ').trim();
       var style = (0, _objectSpread2.default)({}, this.props.style, {
         flex: this.props.flex
       });
-      return _react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
+      return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
         className: className,
         style: style
-      }), this.props.propagateDimensions ? _react.default.createElement(SizeAwareReflexElement, this.props) : this.renderChildren());
+      }), this.props.propagateDimensions ? /*#__PURE__*/_react.default.createElement(SizeAwareReflexElement, this.props) : this.renderChildren());
     }
   }], [{
     key: "getDerivedStateFromProps",
@@ -329,11 +322,7 @@ exports.default = ReflexElement;
   resizeHeight: _propTypes.default.bool,
   resizeWidth: _propTypes.default.bool,
   className: _propTypes.default.string,
-  size: _propTypes.default.number /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  size: _propTypes.default.number
 });
 (0, _defineProperty2.default)(ReflexElement, "defaultProps", {
   propagateDimensionsRate: 100,
@@ -341,9 +330,5 @@ exports.default = ReflexElement;
   resizeHeight: true,
   resizeWidth: true,
   direction: [1],
-  className: '' /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  className: ''
 });

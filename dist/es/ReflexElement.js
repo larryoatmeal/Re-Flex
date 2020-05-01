@@ -82,16 +82,16 @@ class SizeAwareReflexElement extends React.Component {
 
 
   render() {
-    return React.createElement(Measure, {
+    return /*#__PURE__*/React.createElement(Measure, {
       bounds: true,
       onResize: this.onResize
     }, ({
       measureRef
     }) => {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         ref: measureRef,
         className: "reflex-size-aware"
-      }, React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         style: this.state
       }, this.renderChildren()));
     });
@@ -100,6 +100,14 @@ class SizeAwareReflexElement extends React.Component {
 }
 
 export default class ReflexElement extends React.Component {
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////
   //
   //
@@ -179,10 +187,10 @@ export default class ReflexElement extends React.Component {
       flex: this.props.flex
     });
 
-    return React.createElement("div", _extends({}, getDataProps(this.props), {
+    return /*#__PURE__*/React.createElement("div", _extends({}, getDataProps(this.props), {
       className: className,
       style: style
-    }), this.props.propagateDimensions ? React.createElement(SizeAwareReflexElement, this.props) : this.renderChildren());
+    }), this.props.propagateDimensions ? /*#__PURE__*/React.createElement(SizeAwareReflexElement, this.props) : this.renderChildren());
   }
 
 }
@@ -193,11 +201,7 @@ _defineProperty(ReflexElement, "propTypes", {
   resizeHeight: PropTypes.bool,
   resizeWidth: PropTypes.bool,
   className: PropTypes.string,
-  size: PropTypes.number /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  size: PropTypes.number
 });
 
 _defineProperty(ReflexElement, "defaultProps", {
@@ -206,9 +210,5 @@ _defineProperty(ReflexElement, "defaultProps", {
   resizeHeight: true,
   resizeWidth: true,
   direction: [1],
-  className: '' /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  className: ''
 });

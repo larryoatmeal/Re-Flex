@@ -19,9 +19,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 // Browser Utils
 //
 /////////////////////////////////////////////////////////
-var Browser =
-/*#__PURE__*/
-function () {
+var Browser = /*#__PURE__*/function () {
   function Browser() {
     (0, _classCallCheck2.default)(this, Browser);
   }

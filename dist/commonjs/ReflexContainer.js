@@ -17,13 +17,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -41,16 +41,14 @@ var _react = _interopRequireDefault(require("react"));
 
 require("./Polyfills");
 
-///////////////////////////////////////////////////////////
-// ReflexContainer
-// By Philippe Leefsma
-// December 2016
-//
-///////////////////////////////////////////////////////////
-var ReflexContainer =
-/*#__PURE__*/
-function (_React$Component) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var ReflexContainer = /*#__PURE__*/function (_React$Component) {
   (0, _inherits2.default)(ReflexContainer, _React$Component);
+
+  var _super = _createSuper(ReflexContainer);
 
   /////////////////////////////////////////////////////////
   // orientation: Orientation of the layout container
@@ -61,17 +59,25 @@ function (_React$Component) {
   //            to the layout container  
   // style: allows passing inline style to the container
   /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
   function ReflexContainer(props) {
     var _this;
 
     (0, _classCallCheck2.default)(this, ReflexContainer);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ReflexContainer).call(this, props));
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onWindowResize", function () {
+    _this = _super.call(this, props);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onWindowResize", function () {
       _this.setState({
         flexData: _this.computeFlexData()
       });
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onStartResize", function (data) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onStartResize", function (data) {
       var pos = data.event.changedTouches ? data.event.changedTouches[0] : data.event;
 
       switch (_this.props.orientation) {
@@ -91,7 +97,7 @@ function (_React$Component) {
 
       _this.emitElementsEvent(_this.elements, 'onStartResize');
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onResize", function (data) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onResize", function (data) {
       var pos = data.event.changedTouches ? data.event.changedTouches[0] : data.event;
 
       var offset = _this.getOffset(pos, data.domElement);
@@ -123,7 +129,7 @@ function (_React$Component) {
         }
       }
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onStopResize", function (data) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onStopResize", function (data) {
       document.body.classList.remove('row-resize');
       document.body.classList.remove('col-resize');
 
@@ -141,7 +147,7 @@ function (_React$Component) {
         resizing: false
       });
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onElementSize", function (data) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onElementSize", function (data) {
       return new Promise(function (resolve) {
         try {
           var idx = data.index;
@@ -589,7 +595,7 @@ function (_React$Component) {
   }, {
     key: "dispatchOffset",
     value: function dispatchOffset(idx, offset) {
-      return (0, _toConsumableArray2.default)(this.dispatchStretch(idx, offset)).concat((0, _toConsumableArray2.default)(this.dispatchShrink(idx, offset)));
+      return [].concat((0, _toConsumableArray2.default)(this.dispatchStretch(idx, offset)), (0, _toConsumableArray2.default)(this.dispatchShrink(idx, offset)));
     } /////////////////////////////////////////////////////////
     // Emits given if event for each given element
     // if present in the component props
@@ -731,7 +737,7 @@ function (_React$Component) {
       var className = [this.state.resizing ? 'reflex-resizing' : ''].concat((0, _toConsumableArray2.default)(this.props.className.split(' ')), [this.props.orientation, 'reflex-container']).join(' ').trim();
       this.children = _react.default.Children.map(this.getValidChildren(), function (child, index) {
         if (index > _this5.state.flexData.length - 1) {
-          return _react.default.createElement("div", null);
+          return /*#__PURE__*/_react.default.createElement("div", null);
         }
 
         var flexData = _this5.state.flexData[index];
@@ -746,7 +752,7 @@ function (_React$Component) {
         });
         return _react.default.cloneElement(child, newProps);
       });
-      return _react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
+      return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
         style: this.props.style,
         className: className
       }), this.children);
@@ -761,20 +767,12 @@ exports.default = ReflexContainer;
   orientation: _propTypes.default.oneOf(['horizontal', 'vertical']),
   maxRecDepth: _propTypes.default.number,
   className: _propTypes.default.string,
-  style: _propTypes.default.object /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: _propTypes.default.object
 });
 (0, _defineProperty2.default)(ReflexContainer, "defaultProps", {
   orientation: 'horizontal',
   windowResizeAware: false,
   maxRecDepth: 100,
   className: '',
-  style: {} /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: {}
 });

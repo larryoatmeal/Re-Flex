@@ -15,13 +15,21 @@ export default class ReflexHandle extends React.Component {
   //
   //
   /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
   static isA(element) {
     if (!element) {
       return false;
     } //https://github.com/leefsmp/Re-Flex/issues/49
 
 
-    return process.env.NODE_ENV === 'development' ? element.type === React.createElement(ReflexHandle, null).type : element.type === ReflexHandle;
+    return process.env.NODE_ENV === 'development' ? element.type === /*#__PURE__*/React.createElement(ReflexHandle, null).type : element.type === ReflexHandle;
   } /////////////////////////////////////////////////////////
   //
   //
@@ -152,7 +160,7 @@ export default class ReflexHandle extends React.Component {
   /////////////////////////////////////////////////////////
   render() {
     const className = [...this.props.className.split(' '), this.state.active ? 'active' : '', 'reflex-handle'].join(' ').trim();
-    return React.createElement("div", _extends({}, getDataProps(this.props), {
+    return /*#__PURE__*/React.createElement("div", _extends({}, getDataProps(this.props), {
       onTouchStart: this.onMouseDown,
       onMouseDown: this.onMouseDown,
       style: this.props.style,
@@ -170,11 +178,7 @@ _defineProperty(ReflexHandle, "propTypes", {
   className: PropTypes.string,
   propagate: PropTypes.bool,
   onResize: PropTypes.func,
-  style: PropTypes.object /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: PropTypes.object
 });
 
 _defineProperty(ReflexHandle, "defaultProps", {
@@ -184,9 +188,5 @@ _defineProperty(ReflexHandle, "defaultProps", {
   propagate: false,
   onResize: null,
   className: '',
-  style: {} /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: {}
 });

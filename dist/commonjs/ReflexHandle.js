@@ -13,15 +13,15 @@ var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -33,18 +33,25 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _react = _interopRequireDefault(require("react"));
 
-///////////////////////////////////////////////////////////
-// ReflexHandle
-// By Philippe Leefsma
-// June 2018
-//
-///////////////////////////////////////////////////////////
-var ReflexHandle =
-/*#__PURE__*/
-function (_React$Component) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var ReflexHandle = /*#__PURE__*/function (_React$Component) {
   (0, _inherits2.default)(ReflexHandle, _React$Component);
+
+  var _super = _createSuper(ReflexHandle);
+
   (0, _createClass2.default)(ReflexHandle, null, [{
     key: "isA",
+    /////////////////////////////////////////////////////////
+    //
+    //
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    //
+    //
+    /////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////
     //
     //
@@ -55,7 +62,7 @@ function (_React$Component) {
       } //https://github.com/leefsmp/Re-Flex/issues/49
 
 
-      return process.env.NODE_ENV === 'development' ? element.type === _react.default.createElement(ReflexHandle, null).type : element.type === ReflexHandle;
+      return process.env.NODE_ENV === 'development' ? element.type === /*#__PURE__*/_react.default.createElement(ReflexHandle, null).type : element.type === ReflexHandle;
     } /////////////////////////////////////////////////////////
     //
     //
@@ -67,10 +74,10 @@ function (_React$Component) {
     var _this;
 
     (0, _classCallCheck2.default)(this, ReflexHandle);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ReflexHandle).call(this, props));
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onMouseMove", function (event) {
+    _this = _super.call(this, props);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onMouseMove", function (event) {
       if (_this.state.active) {
-        var domElement = _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)));
+        var domElement = _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)(_this));
 
         _this.props.events.emit('resize', {
           index: _this.props.index,
@@ -80,7 +87,7 @@ function (_React$Component) {
 
         if (_this.props.onResize) {
           _this.props.onResize({
-            component: (0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)),
+            component: (0, _assertThisInitialized2.default)(_this),
             domElement: domElement
           });
         }
@@ -89,7 +96,7 @@ function (_React$Component) {
         event.preventDefault();
       }
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onMouseDown", function (event) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onMouseDown", function (event) {
       _this.setState({
         active: true
       });
@@ -99,8 +106,8 @@ function (_React$Component) {
         // if needed by returning true
         // to onStartResize
         if (_this.props.onStartResize({
-          domElement: _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this))),
-          component: (0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this))
+          domElement: _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)(_this)),
+          component: (0, _assertThisInitialized2.default)(_this)
         })) {
           return;
         }
@@ -111,7 +118,7 @@ function (_React$Component) {
         event: event
       });
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "onMouseUp", function (event) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "onMouseUp", function (event) {
       if (_this.state.active) {
         _this.setState({
           active: false
@@ -119,8 +126,8 @@ function (_React$Component) {
 
         if (_this.props.onStopResize) {
           _this.props.onStopResize({
-            domElement: _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this))),
-            component: (0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this))
+            domElement: _reactDom.default.findDOMNode((0, _assertThisInitialized2.default)(_this)),
+            component: (0, _assertThisInitialized2.default)(_this)
           });
         }
 
@@ -191,8 +198,8 @@ function (_React$Component) {
     //
     /////////////////////////////////////////////////////////
     value: function render() {
-      var className = (0, _toConsumableArray2.default)(this.props.className.split(' ')).concat([this.state.active ? 'active' : '', 'reflex-handle']).join(' ').trim();
-      return _react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
+      var className = [].concat((0, _toConsumableArray2.default)(this.props.className.split(' ')), [this.state.active ? 'active' : '', 'reflex-handle']).join(' ').trim();
+      return /*#__PURE__*/_react.default.createElement("div", (0, _extends2.default)({}, (0, _utilities.getDataProps)(this.props), {
         onTouchStart: this.onMouseDown,
         onMouseDown: this.onMouseDown,
         style: this.props.style,
@@ -212,11 +219,7 @@ exports.default = ReflexHandle;
   className: _propTypes.default.string,
   propagate: _propTypes.default.bool,
   onResize: _propTypes.default.func,
-  style: _propTypes.default.object /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: _propTypes.default.object
 });
 (0, _defineProperty2.default)(ReflexHandle, "defaultProps", {
   document: typeof document === 'undefined' ? null : document,
@@ -225,9 +228,5 @@ exports.default = ReflexHandle;
   propagate: false,
   onResize: null,
   className: '',
-  style: {} /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: {}
 });

@@ -24,6 +24,14 @@ export default class ReflexContainer extends React.Component {
   //            to the layout container  
   // style: allows passing inline style to the container
   /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
   constructor(props) {
     super(props);
 
@@ -640,7 +648,7 @@ export default class ReflexContainer extends React.Component {
     const className = [this.state.resizing ? 'reflex-resizing' : '', ...this.props.className.split(' '), this.props.orientation, 'reflex-container'].join(' ').trim();
     this.children = React.Children.map(this.getValidChildren(), (child, index) => {
       if (index > this.state.flexData.length - 1) {
-        return React.createElement("div", null);
+        return /*#__PURE__*/React.createElement("div", null);
       }
 
       const flexData = this.state.flexData[index];
@@ -657,7 +665,7 @@ export default class ReflexContainer extends React.Component {
 
       return React.cloneElement(child, newProps);
     });
-    return React.createElement("div", _extends({}, getDataProps(this.props), {
+    return /*#__PURE__*/React.createElement("div", _extends({}, getDataProps(this.props), {
       style: this.props.style,
       className: className
     }), this.children);
@@ -670,11 +678,7 @@ _defineProperty(ReflexContainer, "propTypes", {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   maxRecDepth: PropTypes.number,
   className: PropTypes.string,
-  style: PropTypes.object /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: PropTypes.object
 });
 
 _defineProperty(ReflexContainer, "defaultProps", {
@@ -682,9 +686,5 @@ _defineProperty(ReflexContainer, "defaultProps", {
   windowResizeAware: false,
   maxRecDepth: 100,
   className: '',
-  style: {} /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: {}
 });

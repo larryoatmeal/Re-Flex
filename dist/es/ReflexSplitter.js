@@ -15,13 +15,23 @@ export default class ReflexSplitter extends React.Component {
   //
   //
   /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  //
+  //
+  /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
+  // Determines if element is a splitter
+  // or wraps a splitter
+  //
+  /////////////////////////////////////////////////////////
   static isA(element) {
     if (!element) {
       return false;
     } //https://github.com/leefsmp/Re-Flex/issues/49
 
 
-    return process.env.NODE_ENV === 'development' ? element.type === React.createElement(ReflexSplitter, null).type : element.type === ReflexSplitter;
+    return process.env.NODE_ENV === 'development' ? //for first load before HMR, need to use usual comparison
+    element.type === /*#__PURE__*/React.createElement(ReflexSplitter, null).type || element.type === ReflexSplitter : element.type === ReflexSplitter;
   } /////////////////////////////////////////////////////////
   //
   //
@@ -152,7 +162,7 @@ export default class ReflexSplitter extends React.Component {
   /////////////////////////////////////////////////////////
   render() {
     const className = [Browser.isMobile() ? 'reflex-thin' : '', ...this.props.className.split(' '), this.state.active ? 'active' : '', 'reflex-splitter'].join(' ').trim();
-    return React.createElement("div", _extends({}, getDataProps(this.props), {
+    return /*#__PURE__*/React.createElement("div", _extends({}, getDataProps(this.props), {
       onTouchStart: this.onMouseDown,
       onMouseDown: this.onMouseDown,
       style: this.props.style,
@@ -170,11 +180,7 @@ _defineProperty(ReflexSplitter, "propTypes", {
   className: PropTypes.string,
   propagate: PropTypes.bool,
   onResize: PropTypes.func,
-  style: PropTypes.object /////////////////////////////////////////////////////////
-  //
-  //
-  /////////////////////////////////////////////////////////
-
+  style: PropTypes.object
 });
 
 _defineProperty(ReflexSplitter, "defaultProps", {
@@ -184,10 +190,5 @@ _defineProperty(ReflexSplitter, "defaultProps", {
   propagate: false,
   onResize: null,
   className: '',
-  style: {} /////////////////////////////////////////////////////////
-  // Determines if element is a splitter
-  // or wraps a splitter
-  //
-  /////////////////////////////////////////////////////////
-
+  style: {}
 });

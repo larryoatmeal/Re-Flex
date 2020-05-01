@@ -17,9 +17,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 // December 2016
 //
 ///////////////////////////////////////////////////////////
-var ReflexEvents =
-/*#__PURE__*/
-function () {
+var ReflexEvents = /*#__PURE__*/function () {
   /////////////////////////////////////////////////////////
   //
   //
