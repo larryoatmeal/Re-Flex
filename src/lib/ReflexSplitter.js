@@ -33,7 +33,7 @@ export default class ReflexSplitter extends React.Component {
   //
   /////////////////////////////////////////////////////////
   static defaultProps = {
-    document: typeof document !== 'undefined' 
+    document: typeof document !== 'undefined'
       ? document
       : null,
     onStartResize: null,
@@ -55,7 +55,8 @@ export default class ReflexSplitter extends React.Component {
     }
     //https://github.com/leefsmp/Re-Flex/issues/49
     return (process.env.NODE_ENV === 'development')
-      ? (element.type === (<ReflexSplitter/>).type)
+      //for first load before HMR, need to use usual comparison
+      ? (element.type === (<ReflexSplitter/>).type) || (element.type === ReflexSplitter)
       : (element.type === ReflexSplitter)
   }
 
@@ -79,7 +80,7 @@ export default class ReflexSplitter extends React.Component {
   //
   /////////////////////////////////////////////////////////
   componentDidMount () {
-    
+
     if (!this.document) {
       return;
     }
@@ -162,7 +163,7 @@ export default class ReflexSplitter extends React.Component {
           component: this,
           domElement
         })
-      }    
+      }
 
       event.stopPropagation()
       event.preventDefault()
