@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////
-// Document body to handle resizing 
+// Document body to handle resizing
 // See: https://github.com/leefsmp/Re-Flex/issues/68
 /////////////////////////////////////////////////////////
 body.col-resize {
@@ -24,7 +24,7 @@ body.row-resize {
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;
   position: relative;
-  
+
   height: 100%;
   width: 100%;
 }
@@ -45,7 +45,6 @@ body.row-resize {
 /////////////////////////////////////////////////////////
 .reflex-container > .reflex-element {
   position: relative;
-  overflow: auto;
   height: 100%;
   width: 100%;
 }
