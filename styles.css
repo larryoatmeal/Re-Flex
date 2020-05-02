@@ -29,7 +29,6 @@ body.row-resize {
 
 .reflex-container > .reflex-element {
   position: relative;
-  overflow: auto;
   height: 100%;
   width: 100%; }
 
